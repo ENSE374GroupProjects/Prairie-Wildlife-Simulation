@@ -223,6 +223,7 @@
 - simGrid:Grid
 - day:int
 --
++ createSim(): void
 + displaySim(): void
 + updateSim():void</panel_attributes>
     <additional_attributes/>
