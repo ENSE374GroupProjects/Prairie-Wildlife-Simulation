@@ -4,6 +4,10 @@ public class Simulation
 {	
 	public static void main(String[] args) 
 	{
+		Grid grid = new Grid();
+		
+		grid.displayWildlife();
+		
 		//Show that the bluejay class is accessible
 		System.out.println("Creating an instance of Bluejay.");
 		Bluejay bluejay = new Bluejay();
