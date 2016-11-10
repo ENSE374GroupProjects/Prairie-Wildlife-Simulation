@@ -6,7 +6,7 @@ public class Simulation
 	{
 		Grid grid = new Grid();
 		
-		grid.displayWildlife();
+		grid.displayWildlife(20);
 		
 		//Show that the bluejay class is accessible
 		System.out.println("Creating an instance of Bluejay.");
