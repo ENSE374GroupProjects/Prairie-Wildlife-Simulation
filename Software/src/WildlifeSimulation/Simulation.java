@@ -175,7 +175,7 @@ public class Simulation
 		wildlifeDensity = userInterface.determineDensity();
 		
 		//Utilize the density level to populate the wildlife grid
-		
+		wildlifeGrid.populateGrid(wildlifeDensity);
 				
 		//Create a loop that will allow the user to interact with the application for as long as they require
 		do
@@ -205,6 +205,7 @@ public class Simulation
 				//Enter a new wildlife density
 				case '3':
 					wildlifeDensity = userInterface.determineDensity();
+					wildlifeGrid.populateGrid(wildlifeDensity);
 					break;
 					
 				//Exit the program
