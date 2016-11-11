@@ -2,6 +2,8 @@ package WildlifeSimulation;
 
 public class Fauna extends Wildlife 
 {
+	 int hunger;
+	 String dietList[] = new String[10];
 	//This abstract class will eventually be used to store fauna-specific members and methods.
 	//Potential examples include movement, eating and a list of the fauna's prey.
 	
@@ -22,4 +24,5 @@ public class Fauna extends Wildlife
 	{
 		System.out.println("The " + getName() + " is moving.");
 	}
+	
 }

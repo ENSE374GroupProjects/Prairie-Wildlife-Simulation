@@ -7,4 +7,8 @@ public class Fox extends Fauna
 	{
 		super("fox", 'F');
 	}
+	public void getdietList(){
+		System.out.println("The " + getName() + );
+	}
+    
 }

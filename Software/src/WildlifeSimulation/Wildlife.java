@@ -40,4 +40,5 @@ public class Wildlife
 	{
 		return this.symbol;
 	}
+	
 }

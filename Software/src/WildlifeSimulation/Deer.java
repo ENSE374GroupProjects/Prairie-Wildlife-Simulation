@@ -7,4 +7,7 @@ public class Deer extends Fauna
 	{
 		super("deer", 'D');
 	}
+	public void getdietList(){
+		System.out.println("The " + getName() + " eats grass, fruit, nuts ");
+	}
 }

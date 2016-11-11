@@ -7,4 +7,7 @@ public class Bluejay extends Fauna
 	{
 		super("bluejay", 'B');
 	}
+	public void getdietList(){
+		System.out.println("The " + getName() + " eats nuts, nuts ");
+	}
 }
