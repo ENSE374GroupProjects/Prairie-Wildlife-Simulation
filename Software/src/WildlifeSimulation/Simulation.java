@@ -198,8 +198,8 @@ public class Simulation
 					//Obtain a column from the user
 					column = userInterface.determineRowOrColumn("column", Grid.COLS - 1);
 					
-					//Verify the user's selection
-					System.out.println("You selected the location [" + row + "][" + column + "].");
+					//Output the wildlife at the desired location
+					wildlifeGrid.getWildlifeAtLocation(row, column);
 					break;					
 					
 				//Enter a new wildlife density
