@@ -85,4 +85,14 @@ public class Grid
 		}
 		System.out.println("/");
 	}
+	
+	public void getWildlifeAtLocation(int row, int col)
+	{
+		if (WildlifeGrid[row][col] != null) {
+			System.out.println("Location [" + row + "][" + col + "] contains a " + WildlifeGrid[row][col] + ".");
+		}
+		else {
+			System.out.println("Location [" + row + "][" + col + "] is empty.");
+		}
+	}
 }

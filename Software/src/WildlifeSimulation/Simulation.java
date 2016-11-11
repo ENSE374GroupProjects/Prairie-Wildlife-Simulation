@@ -200,6 +200,7 @@ public class Simulation
 					
 					//Verify the user's selection
 					System.out.println("You selected the location [" + row + "][" + column + "].");
+					wildlifeGrid.getWildlifeAtLocation(row, column);
 					break;					
 					
 				//Enter a new wildlife density
