@@ -4,8 +4,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Grid 
 {
-	private static final int ROWS = 36;
-	private static final int COLS = 100;
+	public static final int ROWS = 36;
+	public static final int COLS = 100;
 	private Wildlife WildlifeGrid[][] = new Wildlife[ROWS][COLS];
 	
 	public Grid() 
