@@ -11,7 +11,6 @@
 */
 
 package WildlifeSimulation;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Grid 
@@ -75,7 +74,7 @@ public class Grid
 	public void displayWildlife()
 	{
 		// Print top bar
-		System.out.print("/");
+		System.out.print("\n/");
 		for (int i = 0; i < COLS; i++)
 		{
 			System.out.print("=");
@@ -107,5 +106,16 @@ public class Grid
 			System.out.print("=");
 		}
 		System.out.println("/");
+	}
+	
+	public void getWildlifeAtLocation(int row, int col)
+	{
+		// If there is something at the entered location, print the name of the object, otherwise say it is empty
+		if (WildlifeGrid[row][col] != null) {
+			System.out.println("Location [" + row + "][" + col + "] contains a " + WildlifeGrid[row][col].getName() + ".");
+		}
+		else {
+			System.out.println("Location [" + row + "][" + col + "] is empty.");
+		}
 	}
 }
