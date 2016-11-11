@@ -8,6 +8,6 @@ public class Wolf extends Fauna
 		super("wolf", 'W');
 	}
 	public void getdietList(){
-		System.out.println("The " + getName() + " eats catepillar, mouse, hawk, rabbit, squirrel, deer ");
+		System.out.println("The " + getName() + " eats rabbit and deer ");
 	}
 }

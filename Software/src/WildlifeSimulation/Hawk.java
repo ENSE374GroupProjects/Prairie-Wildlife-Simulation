@@ -8,6 +8,6 @@ public class Hawk extends Fauna
 		super("hawk", 'H');
 	}
 	public void getdietList(){
-		System.out.println("The " + getName() + " eats squirrel, birds, grasshopper ");
+		System.out.println("The " + getName() + " eats squirrel and mouse");
 	}
 }

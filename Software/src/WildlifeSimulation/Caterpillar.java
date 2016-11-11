@@ -8,6 +8,6 @@ public class Caterpillar extends Fauna
 		super("caterpillar", 'C');
 	}
 	public void getdietList(){
-		System.out.println("The " + getName() + " plants ");
+		System.out.println("The " + getName() + " eats trees ");
 	}    
 }

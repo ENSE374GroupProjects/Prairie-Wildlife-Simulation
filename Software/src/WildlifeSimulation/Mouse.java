@@ -8,6 +8,6 @@ public class Mouse extends Fauna
 		super("mouse", 'M');
 	}
 	public void getdietList(){
-		System.out.println("The " + getName() + " eats fruit, plants ");
+		System.out.println("The " + getName() + " eats grass, trees ");
 	}
 }

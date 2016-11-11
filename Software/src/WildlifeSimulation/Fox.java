@@ -8,6 +8,6 @@ public class Fox extends Fauna
 		super("fox", 'F');
 	}
 	public void getdietList(){
-		System.out.println("The " + getName() + " eats catepillar, mouse, hawk, rabbit, squirrel ");
+		System.out.println("The " + getName() + " eats  mouse, rabbit and squirrel");
 	}    
 }

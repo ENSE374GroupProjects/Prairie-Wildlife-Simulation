@@ -8,6 +8,6 @@ public class Rabbit extends Fauna
 		super("rabbit", 'R');
 	}
 	public void getdietList(){
-		System.out.println("The " + getName() + " eats fruits, grass ");
+		System.out.println("The " + getName() + " eats grass ");
 	}
 }
