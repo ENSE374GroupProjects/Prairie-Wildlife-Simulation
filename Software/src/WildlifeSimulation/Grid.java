@@ -12,7 +12,7 @@ public class Grid
 	{
 	}
 	
-	private void populateGrid(int wildlifeDensity)
+	public void populateGrid(int wildlifeDensity)
 	{
 		// Implement different chances for each specific creature to spawn
 		// Base the switch case value off of wildlifeDensity 
@@ -49,9 +49,8 @@ public class Grid
 		}
 	}
 
-	public void displayWildlife(int wildlifeDensity)
+	public void displayWildlife()
 	{
-		populateGrid(wildlifeDensity);
 		// Print top bar
 		System.out.print("/");
 		for (int i = 0; i < COLS; i++)
