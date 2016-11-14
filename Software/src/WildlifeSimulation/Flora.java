@@ -12,7 +12,7 @@
 
 package WildlifeSimulation;
 
-public class Flora extends Wildlife 
+public abstract class Flora extends Wildlife 
 {
 	//This abstract class will eventually be used to store flora-specific members and methods. 
 	//Potential examples include plant growth.

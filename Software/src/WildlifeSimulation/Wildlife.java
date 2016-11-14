@@ -12,7 +12,7 @@
 
 package WildlifeSimulation;
 
-public class Wildlife 
+public abstract class Wildlife 
 {	
 	private String name;
 	private char symbol;
