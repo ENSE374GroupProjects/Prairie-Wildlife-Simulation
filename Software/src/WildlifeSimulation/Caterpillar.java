@@ -18,5 +18,6 @@ public class Caterpillar extends Fauna
 	public Caterpillar()
 	{
 		super("caterpillar", 'C');
+		preyList.add(new Tree());
 	}
 }

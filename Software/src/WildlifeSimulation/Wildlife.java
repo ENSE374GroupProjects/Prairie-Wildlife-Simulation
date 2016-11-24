@@ -12,10 +12,13 @@
 
 package WildlifeSimulation;
 
+import java.util.ArrayList;
+
 public class Wildlife 
 {	
 	private String name;
 	private char symbol;
+	public ArrayList<Wildlife> preyList = new ArrayList<Wildlife>();
 	
 	//Default constructor
 	public Wildlife()
@@ -51,5 +54,17 @@ public class Wildlife
 	public char getSymbol()
 	{
 		return this.symbol;
+	}
+	
+	public boolean canEat(Wildlife prey)
+	{
+		int i=0;
+		while (i < preyList.size())
+		{
+			if (preyList.get(i).getName().equals(prey.getName()))
+				return true;
+			i++;
+		}
+		return false;
 	}
 }

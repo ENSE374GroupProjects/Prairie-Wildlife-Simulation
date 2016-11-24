@@ -18,5 +18,6 @@ public class Grasshopper extends Fauna
 	public Grasshopper() 
 	{
 		super("grasshopper", 'G');
+		preyList.add(new Grass());
 	}
 }

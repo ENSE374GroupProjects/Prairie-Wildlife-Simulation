@@ -18,5 +18,7 @@ public class Mouse extends Fauna
 	public Mouse() 
 	{
 		super("mouse", 'M');
+		preyList.add(new Grass());
+		preyList.add(new Tree());
 	}
 }

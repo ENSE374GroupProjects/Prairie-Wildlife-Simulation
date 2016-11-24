@@ -157,6 +157,56 @@ public class Simulation
 	
 	public static void main(String[] args) 
 	{
+		//Test the preyLists
+		Wildlife wildlife[] = new Wildlife[12];
+		wildlife[0] = new Wolf();
+		wildlife[1] = new Squirrel();
+		wildlife[2] = new Bluejay();
+		wildlife[3] = new Caterpillar();
+		wildlife[4] = new Fox();
+		wildlife[5] = new Grass();
+		wildlife[6] = new Grasshopper();
+		wildlife[7] = new Hawk();
+		wildlife[8] = new Mouse();
+		wildlife[9] = new Rabbit();
+		wildlife[10] = new Tree();
+		wildlife[11] = new Deer();
+	
+		for(int i = 0; i < 12; i++)
+		{
+			System.out.println("The " + wildlife[i].getName() + " can eat: ");
+			
+			for(int j = 0; j < wildlife[i].preyList.size(); j++)
+			{
+				System.out.println("\t" + wildlife[i].preyList.get(j).getName());
+			}
+		}
+		
+		for(int i = 0; i < 12; i++)
+		{
+			System.out.print("\n Can the " + wildlife[i].getName() + " eat: ");
+			
+			for(int j = 0; j < 12; j++)
+			{
+				if (j != i)
+				{
+				System.out.print("\n \t" +wildlife[j].getName() + "? ");
+				System.out.print(wildlife[i].canEat(wildlife[j]));
+				}
+			}
+		}
+		System.out.print("\n");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//Declaring local variables
 		Simulation userInterface = new Simulation();
 		Grid wildlifeGrid = new Grid();

@@ -18,5 +18,8 @@ public class Fox extends Fauna
 	public Fox() 
 	{
 		super("fox", 'F');
+		preyList.add(new Rabbit());
+		preyList.add(new Squirrel());
+		preyList.add(new Mouse());
 	}
 }
