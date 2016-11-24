@@ -18,7 +18,7 @@ public class Wildlife
 {	
 	private String name;
 	private char symbol;
-	public ArrayList<Wildlife> preyList = new ArrayList<Wildlife>();
+	protected ArrayList<Wildlife> preyList = new ArrayList<Wildlife>();
 	
 	//Default constructor
 	public Wildlife()

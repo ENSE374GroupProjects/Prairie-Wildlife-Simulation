@@ -172,15 +172,15 @@ public class Simulation
 		wildlife[10] = new Tree();
 		wildlife[11] = new Deer();
 	
-		for(int i = 0; i < 12; i++)
-		{
-			System.out.println("The " + wildlife[i].getName() + " can eat: ");
-			
-			for(int j = 0; j < wildlife[i].preyList.size(); j++)
-			{
-				System.out.println("\t" + wildlife[i].preyList.get(j).getName());
-			}
-		}
+//		for(int i = 0; i < 12; i++)
+//		{
+//			System.out.println("The " + wildlife[i].getName() + " can eat: ");
+//			
+//			for(int j = 0; j < wildlife[i].preyList.size(); j++)
+//			{
+//				System.out.println("\t" + wildlife[i].preyList.get(j).getName());
+//			}
+//		}
 		
 		for(int i = 0; i < 12; i++)
 		{
