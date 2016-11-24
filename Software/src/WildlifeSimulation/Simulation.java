@@ -159,6 +159,27 @@ public class Simulation
 		return index;
 	}
 	
+	//Function for displaying the wildlife legend to the user
+	public void displayLegend()
+	{
+		System.out.print("\n            --------LEGEND--------"
+			+ "\nFauna are indicated with a capital letter:"
+			+ "\n\tB: Bluejay"
+			+ "\n\tC: Caterpillar"
+			+ "\n\tD: Deer"
+			+ "\n\tF: Fox"
+			+ "\n\tG: Grasshopper"
+			+ "\n\tH: Hawk"
+			+ "\n\tM: Mouse"
+			+ "\n\tR: Rabbit"
+			+ "\n\tS: Squirrel"
+			+ "\n\tW: Wolf"
+			+ "\nFlora are indicated with a lowercase letter:"
+			+ "\n\tg: Grass"
+			+ "\n\tt: Tree"
+			+ "\n            ----------------------\n");
+	}
+	
 	public static void main(String[] args) 
 	{
 		//Declaring local variables
@@ -218,7 +239,7 @@ public class Simulation
 					
 				//View a legend
 				case '4':
-					System.out.println("A legend will be displayed here.");
+					userInterface.displayLegend();
 					break;
 					
 				//Enter a new wildlife density
