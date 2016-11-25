@@ -32,6 +32,6 @@ public abstract class Flora extends Wildlife
 	//Move function stub
 	public void move()
 	{
-		System.out.println("The " + getName() + " cannot move.");
+		return;
 	}
 }

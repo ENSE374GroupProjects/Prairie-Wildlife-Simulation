@@ -123,7 +123,8 @@ public class Grid
 	{
 		//int maxLeft, maxRight, maxUp, maxDown, mobility;
 		int maxRowUp, maxRowDown, maxColLeft, maxColRight, mobility;
-		int randStartRow, randStartCol;
+		int randRow, randCol;
+		boolean canMove;
 		for (int row = 0; row < ROWS; row++)
 		{
 			for (int col = 0; col < COLS; col++)
@@ -143,20 +144,27 @@ public class Grid
 						//randStartRow = ThreadLocalRandom.current().nextInt(-1, 2); // Random number from -1 to +1
 						//randStartCol = ThreadLocalRandom.current().nextInt(-1, 2);
 						
-						randStartRow = ThreadLocalRandom.current().nextInt(maxRowUp, maxRowDown + 1);
-						randStartCol = ThreadLocalRandom.current().nextInt(maxColLeft, maxColRight + 1);
+						do 
+						{
+							randRow = ThreadLocalRandom.current().nextInt(maxRowUp, maxRowDown + 1);
+							randCol = ThreadLocalRandom.current().nextInt(maxColLeft, maxColRight + 1);
+						} while ((!WildlifeGrid[row][col].canEat(WildlifeGrid[randRow][randCol])) && (WildlifeGrid[randRow][randCol] != null));
+						
+						if (WildlifeGrid[randRow][randCol] == null)
+						{
+							WildlifeGrid[randRow][randCol] = WildlifeGrid[row][col];
+							WildlifeGrid[row][col] = null;
+						}
+						else if (WildlifeGrid[row][col].canEat(WildlifeGrid[randRow][randCol]))
+						{
+							// Implement eat
+							WildlifeGrid[randRow][randCol] = WildlifeGrid[row][col];
+							WildlifeGrid[row][col] = null;
+						}
 						
 						// Testing, just move to initial random square within grid
-						WildlifeGrid[randStartRow][randStartCol] = WildlifeGrid[row][col];
+						WildlifeGrid[randRow][randCol] = WildlifeGrid[row][col];
 						WildlifeGrid[row][col] = null;
-						
-						// for (int i = row + randStartRow; i <= maxRowDown && i >= maxRowUp; i++)
-//						int i = row + randStartRow;
-//						int j = col + randStartCol;
-//						while (i >= maxRowUp && i <= maxRowDown)
-//						{
-							
-//						}
 					}
 				}
 			}

@@ -29,6 +29,6 @@ public abstract class Fauna extends Wildlife
 	//Move function stub
 	public void move()
 	{
-		System.out.println("The " + getName() + " is moving.");
+		super.move();
 	}
 }
