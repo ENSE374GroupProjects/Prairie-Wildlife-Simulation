@@ -15,9 +15,9 @@ package WildlifeSimulation;
 public abstract class Fauna extends Wildlife 
 {
 	//Initializing constructor
-	public Fauna(String name, char symbol)
+	public Fauna(String name, char symbol, int mobility, int hungerReplenishment)
 	{
-		super(name, symbol);
+		super(name, symbol, mobility, hungerReplenishment);
 	}
 	
 	//Eat function stub

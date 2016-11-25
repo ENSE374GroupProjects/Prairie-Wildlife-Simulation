@@ -17,7 +17,7 @@ public class Hawk extends Fauna
 	//Default constructor
 	public Hawk()
 	{
-		super("hawk", 'H');
+		super("hawk", 'H', 4, 100);
 		preyList.add(new Mouse());
 		preyList.add(new Squirrel());
 	}

@@ -17,7 +17,11 @@ public abstract class Wildlife
 {	
 	private String name;
 	private char symbol;
+	private int mobility;
+
 	protected ArrayList<Wildlife> preyList = new ArrayList<Wildlife>();
+	private int hungerReplenishment;
+	//private int move;
 	
 	//Default constructor
 	public Wildlife()
@@ -27,10 +31,13 @@ public abstract class Wildlife
 	}
 	
 	//Initializing constructor
-	public Wildlife(String name, char symbol)
+	public Wildlife(String name, char symbol, int mobility, int hungerReplenishment)
 	{
 		this.name = name;
 		this.symbol = symbol;
+		this.mobility = mobility;
+		this.hungerReplenishment = hungerReplenishment;
+		//this.move = 0;
 	}
 	
 	//Eat function - to be inherited
@@ -41,6 +48,11 @@ public abstract class Wildlife
 	//Move function - to be inherited
 	public void move()
 	{
+	}
+	
+	public int getMobility()
+	{
+		return this.mobility;
 	}
 	
 	//Name getter

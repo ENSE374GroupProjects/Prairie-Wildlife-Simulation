@@ -18,9 +18,9 @@ public abstract class Flora extends Wildlife
 	//Potential examples include plant growth.
 	
 	//Initializing constructor
-	public Flora(String name, char symbol)
+	public Flora(String name, char symbol, int mobility, int hungerReplenishment)
 	{
-		super(name, symbol);
+		super(name, symbol, mobility, hungerReplenishment);
 	}
 	
 	//Eat function stub
