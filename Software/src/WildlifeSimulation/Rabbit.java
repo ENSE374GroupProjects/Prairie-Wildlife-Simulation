@@ -18,5 +18,6 @@ public class Rabbit extends Fauna
 	public Rabbit() 
 	{
 		super("rabbit", 'R');
+		preyList.add(new Grass());
 	}
 }

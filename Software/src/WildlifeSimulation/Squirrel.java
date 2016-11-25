@@ -18,5 +18,6 @@ public class Squirrel extends Fauna
 	public Squirrel() 
 	{
 		super("squirrel", 'S');
+		preyList.add(new Tree());
 	}
 }

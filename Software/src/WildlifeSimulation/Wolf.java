@@ -18,5 +18,7 @@ public class Wolf extends Fauna
 	public Wolf()
 	{
 		super("wolf", 'W');
+		preyList.add(new Rabbit());
+		preyList.add(new Deer());
 	}
 }

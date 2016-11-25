@@ -18,5 +18,7 @@ public class Deer extends Fauna
 	public Deer()
 	{
 		super("deer", 'D');
+		preyList.add(new Grass());
+		preyList.add(new Tree());
 	}
 }

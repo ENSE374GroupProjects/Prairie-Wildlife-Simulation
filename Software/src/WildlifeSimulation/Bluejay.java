@@ -19,5 +19,7 @@ public class Bluejay extends Fauna
 	public Bluejay()
 	{
 		super("bluejay", 'B');
+		preyList.add(new Caterpillar());
+		preyList.add(new Tree());
 	}
 }
