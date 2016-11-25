@@ -17,7 +17,8 @@ public abstract class Fauna extends Wildlife
 	//Initializing constructor
 	public Fauna(String name, char symbol, int mobility, int hungerReplenishment)
 	{
-		super(name, symbol, mobility, hungerReplenishment);
+		//Pass along specific fauna information as well as a default hunger of 100 to the super constructor
+		super(name, symbol, mobility, hungerReplenishment, 100);
 	}
 	
 	//Eat function stub

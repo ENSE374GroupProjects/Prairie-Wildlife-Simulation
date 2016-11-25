@@ -20,7 +20,8 @@ public abstract class Flora extends Wildlife
 	//Initializing constructor
 	public Flora(String name, char symbol, int mobility, int hungerReplenishment)
 	{
-		super(name, symbol, mobility, hungerReplenishment);
+		//Pass along specific fauna information as well as a default hunger of 0 to the super constructor
+		super(name, symbol, mobility, hungerReplenishment, 0);
 	}
 	
 	//Eat function stub
