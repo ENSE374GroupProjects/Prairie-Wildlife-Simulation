@@ -79,7 +79,8 @@ public class Simulation
 			+ "|\t1. Display the wildlife grid to the console           |\n"
 			+ "|\t2. Determine the wildlife present at a given location |\n"
 			+ "|\t3. Enter a new wildlife density                       |\n"
-			+ "|\t4. Exit the program                                   |\n"
+			+ "|\t4. Advance one day                                    |\n"
+			+ "|\t5. Exit the program                                   |\n"
 			+ "\\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/\n\n");
 		
 		//Create a loop that will run until the user enters a valid choice
@@ -98,6 +99,7 @@ public class Simulation
 				case '2':
 				case '3':
 				case '4':
+				case '5':
 					validChoice = true;
 					break;
 				//If the given choice is not permitted, inform the user and prompt them again
@@ -208,8 +210,12 @@ public class Simulation
 					wildlifeGrid.populateGrid(wildlifeDensity);
 					break;
 					
-				//Exit the program
 				case '4':
+					wildlifeGrid.advanceOneDay();
+					break;
+					
+				//Exit the program
+				case '5':
 					System.out.println("Goodbye!");
 					anotherSelection = false;
 					break;

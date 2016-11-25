@@ -6,9 +6,9 @@ public class Fauna extends Wildlife
 	//Potential examples include movement, eating and a list of the fauna's prey.
 	
 	//Initializing constructor
-	public Fauna(String name, char symbol)
+	public Fauna(String name, char symbol, int mobility, int hungerReplenishment)
 	{
-		super(name, symbol);
+		super(name, symbol, mobility, hungerReplenishment);
 	}
 	
 	//Eat function stub

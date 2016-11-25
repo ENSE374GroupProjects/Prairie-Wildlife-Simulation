@@ -5,6 +5,6 @@ public class Grass extends Flora
 	//Default constructor
 	public Grass()
 	{
-		super("grass", 'g');
+		super("grass", 'g', 0, 50);
 	}
 }
