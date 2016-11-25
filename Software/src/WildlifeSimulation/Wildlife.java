@@ -11,10 +11,9 @@
 */
 
 package WildlifeSimulation;
-
 import java.util.ArrayList;
 
-public class Wildlife 
+public abstract class Wildlife 
 {	
 	private String name;
 	private char symbol;
@@ -56,11 +55,14 @@ public class Wildlife
 		return this.symbol;
 	}
 	
+	//Determines if an animal can eat another Wildlife instance
 	public boolean canEat(Wildlife prey)
 	{
 		int i=0;
+		//Loop through all Wildlife in the animal's prey list.
 		while (i < preyList.size())
 		{
+			//Return true if the animal can be eaten.
 			if (preyList.get(i).getName().equals(prey.getName()))
 				return true;
 			i++;
