@@ -124,14 +124,12 @@ public class Grid
 		//int maxLeft, maxRight, maxUp, maxDown, mobility;
 		int maxRowUp, maxRowDown, maxColLeft, maxColRight, mobility;
 		int randRow, randCol;
-		boolean canMove;
 		for (int row = 0; row < ROWS; row++)
 		{
 			for (int col = 0; col < COLS; col++)
 			{
 				if (WildlifeGrid[row][col] != null)
 				{
-					// Find the max positions that the current wildlife can move to linearly
 					mobility = WildlifeGrid[row][col].getMobility();
 					if (mobility > 0)
 					{
@@ -139,10 +137,6 @@ public class Grid
 						maxRowDown = ((row + mobility) < ROWS) ? (row + mobility) : (ROWS - 1);
 						maxColLeft = ((col - mobility) >= 0) ? (col - mobility) : 0;
 						maxColRight = ((col + mobility) < COLS) ? (col + mobility) : (COLS - 1);
-						
-						// Choose a random row and column to start at within -1 and +1
-						//randStartRow = ThreadLocalRandom.current().nextInt(-1, 2); // Random number from -1 to +1
-						//randStartCol = ThreadLocalRandom.current().nextInt(-1, 2);
 						
 						do 
 						{
@@ -152,19 +146,23 @@ public class Grid
 						
 						if (WildlifeGrid[randRow][randCol] == null)
 						{
-							WildlifeGrid[randRow][randCol] = WildlifeGrid[row][col];
-							WildlifeGrid[row][col] = null;
+							WildlifeGrid[row][col].move();
+							if (WildlifeGrid[row][col].isDead())
+							{
+								WildlifeGrid[row][col] = null;
+							}
+							else
+							{
+								WildlifeGrid[randRow][randCol] = WildlifeGrid[row][col];
+								WildlifeGrid[row][col] = null;
+							}
 						}
 						else if (WildlifeGrid[row][col].canEat(WildlifeGrid[randRow][randCol]))
 						{
-							// Implement eat
+							WildlifeGrid[row][col].eat(WildlifeGrid[randRow][randCol]);
 							WildlifeGrid[randRow][randCol] = WildlifeGrid[row][col];
 							WildlifeGrid[row][col] = null;
 						}
-						
-						// Testing, just move to initial random square within grid
-						WildlifeGrid[randRow][randCol] = WildlifeGrid[row][col];
-						WildlifeGrid[row][col] = null;
 					}
 				}
 			}
