@@ -15,14 +15,13 @@ import java.util.ArrayList;
 
 public abstract class Wildlife 
 {	
+	protected ArrayList<Wildlife> preyList = new ArrayList<Wildlife>();
 	private String name;
 	private char symbol;
 	private int mobility;
-
-	protected ArrayList<Wildlife> preyList = new ArrayList<Wildlife>();
 	private int hungerReplenishment;
 	private int totalMoves;
-	private int hunger;
+	public int hunger;
 	
 	//Default constructor
 	public Wildlife()
@@ -54,12 +53,7 @@ public abstract class Wildlife
 		this.totalMoves++;
 		this.hunger -= this.hunger - 10;
 	}
-	
-	public int getMobility()
-	{
-		return this.mobility;
-	}
-	
+
 	//Name getter
 	public String getName()
 	{
@@ -72,17 +66,28 @@ public abstract class Wildlife
 		return this.symbol;
 	}
 	
+	//Mobility getter
+	public int getMobility()
+	{
+		return this.mobility;
+	}
+
 	// Get hungerReplenishment value
 	private int getHungerReplenishment()
 	{
 		return this.hungerReplenishment;
 	}
 	
+	//Hunger  getter
+	public int getHunger()
+	{
+		return this.hunger;
+	}
+	
 	public boolean isDead()
 	{
 		return (this.hunger <= 0);
 	}
-	
 	//Determines if an animal can eat another Wildlife instance
 	public boolean canEat(Wildlife prey)
 	{

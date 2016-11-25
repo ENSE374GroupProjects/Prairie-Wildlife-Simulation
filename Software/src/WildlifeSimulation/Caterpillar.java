@@ -17,7 +17,10 @@ public class Caterpillar extends Fauna
 	//Default constructor
 	public Caterpillar()
 	{
+		//Pass along specific caterpillar information to the super constructor
 		super("caterpillar", 'C', 1, 50);
+		
+		//Instantiate the caterpillar's prey list
 		preyList.add(new Tree());
 	}
 }

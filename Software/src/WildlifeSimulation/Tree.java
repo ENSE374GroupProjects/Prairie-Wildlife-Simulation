@@ -17,6 +17,7 @@ public class Tree extends Flora
 	//Default constructor
 	public Tree()
 	{
+		//Pass along specific tree information to the super constructor
 		super("tree", 't', 0, 100);
 	}
 }

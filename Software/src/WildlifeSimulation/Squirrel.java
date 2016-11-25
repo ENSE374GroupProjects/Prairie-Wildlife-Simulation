@@ -17,7 +17,10 @@ public class Squirrel extends Fauna
 	//Default Constructor
 	public Squirrel() 
 	{
+		//Pass along specific squirrel information to the super constructor
 		super("squirrel", 'S', 2, 60);
+		
+		//Instantiate the squirrel's prey list
 		preyList.add(new Tree());
 	}
 }

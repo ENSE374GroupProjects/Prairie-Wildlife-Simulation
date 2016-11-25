@@ -4,6 +4,7 @@
 * DESCRIPTION:
 * This file contains the grid implementation required by the wildlife simulation. Users are able to populate
 * the grid, display the grid to the console and determine the organism present at a particular location.
+* Additionally, users are able to advance the simulation by a single day.
 *
 * AUTHORS: 	Tristan Heisler 200351317
 * 			Jonathon Wells 200328640
