@@ -74,7 +74,7 @@ public class Grid
 	public void displayWildlife()
 	{
 		// Print top bar
-		System.out.print("/");
+		System.out.print("\n/");
 		for (int i = 0; i < COLS; i++)
 		{
 			System.out.print("=");

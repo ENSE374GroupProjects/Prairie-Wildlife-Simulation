@@ -76,11 +76,12 @@ public class Simulation
 		//Present the possible choices to the user in a menu
 		System.out.print("\n/~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\\n"
 			+ "|Please indicate what you would like to do next:              |\n"
-			+ "|\t1. Display the wildlife grid to the console           |\n"
+			+ "|\t1. Display the current wildlife grid to the console   |\n"
 			+ "|\t2. Determine the wildlife present at a given location |\n"
-			+ "|\t3. Enter a new wildlife density                       |\n"
-			+ "|\t4. Advance one day                                    |\n"
-			+ "|\t5. Exit the program                                   |\n"
+			+ "|\t3. Advance the simulation by a single day             |\n"
+			+ "|\t4. View a legend to understand symbol meaning         |\n"			
+			+ "|\t5. Enter a new wildlife density                       |\n"
+			+ "|\t6. Exit the program                                   |\n"
 			+ "\\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/\n\n");
 		
 		//Create a loop that will run until the user enters a valid choice
@@ -100,6 +101,7 @@ public class Simulation
 				case '3':
 				case '4':
 				case '5':
+				case '6':
 					validChoice = true;
 					break;
 				//If the given choice is not permitted, inform the user and prompt them again
@@ -157,6 +159,27 @@ public class Simulation
 		return index;
 	}
 	
+	//Function for displaying the wildlife legend to the user
+	public void displayLegend()
+	{
+		System.out.print("\n            --------LEGEND--------"
+			+ "\nFauna are indicated with a capital letter:"
+			+ "\n\tB: Bluejay"
+			+ "\n\tC: Caterpillar"
+			+ "\n\tD: Deer"
+			+ "\n\tF: Fox"
+			+ "\n\tG: Grasshopper"
+			+ "\n\tH: Hawk"
+			+ "\n\tM: Mouse"
+			+ "\n\tR: Rabbit"
+			+ "\n\tS: Squirrel"
+			+ "\n\tW: Wolf"
+			+ "\nFlora are indicated with a lowercase letter:"
+			+ "\n\tg: Grass"
+			+ "\n\tt: Tree"
+			+ "\n            ----------------------\n");
+	}
+	
 	public static void main(String[] args) 
 	{
 		//Declaring local variables
@@ -178,6 +201,10 @@ public class Simulation
 		
 		//Utilize the density level to populate the wildlife grid
 		wildlifeGrid.populateGrid(wildlifeDensity);
+		
+		//Display the generated grid to the user
+		System.out.println("\nThe wildlife grid was successfully populated.");
+		wildlifeGrid.displayWildlife();
 				
 		//Create a loop that will allow the user to interact with the application for as long as they require
 		do
@@ -193,6 +220,7 @@ public class Simulation
 					wildlifeGrid.displayWildlife();
 					break;					
 					
+				//Determine the wildlife present at a given location
 				case '2':
 					//Obtain a row from the user
 					row = userInterface.determineRowOrColumn("row", Grid.ROWS - 1);
@@ -202,20 +230,31 @@ public class Simulation
 					
 					//Output the wildlife at the desired location
 					wildlifeGrid.getWildlifeAtLocation(row, column);
-					break;					
+					break;	
+					
+				//Advance the simulation by a single day
+				case '3':
+					System.out.println("The simulation will be advanced by a single day here.");
+					break;
+					
+				//View a legend
+				case '4':
+					userInterface.displayLegend();
+					break;
 					
 				//Enter a new wildlife density
-				case '3':
+				case '5':
+					//Obtain a new density and populate the grid
 					wildlifeDensity = userInterface.determineDensity();
 					wildlifeGrid.populateGrid(wildlifeDensity);
-					break;
 					
-				case '4':
-					wildlifeGrid.advanceOneDay();
-					break;
+					//Display the generated grid to the user
+					System.out.println("\nThe wildlife grid was successfully populated.");
+					wildlifeGrid.displayWildlife();
+					break;			
 					
 				//Exit the program
-				case '5':
+				case '6':
 					System.out.println("Goodbye!");
 					anotherSelection = false;
 					break;
