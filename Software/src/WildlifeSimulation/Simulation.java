@@ -181,7 +181,7 @@ public class Simulation
 	}
 	
 	public static void main(String[] args) 
-	{
+	{		
 		//Declaring local variables
 		Simulation userInterface = new Simulation();
 		Grid wildlifeGrid = new Grid();

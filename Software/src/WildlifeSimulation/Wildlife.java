@@ -21,6 +21,7 @@ public abstract class Wildlife
 
 	protected ArrayList<Wildlife> preyList = new ArrayList<Wildlife>();
 	private int hungerReplenishment;
+	public int hunger;
 	//private int move;
 	
 	//Default constructor
@@ -31,12 +32,13 @@ public abstract class Wildlife
 	}
 	
 	//Initializing constructor
-	public Wildlife(String name, char symbol, int mobility, int hungerReplenishment)
+	public Wildlife(String name, char symbol, int mobility, int hungerReplenishment, int hunger)
 	{
 		this.name = name;
 		this.symbol = symbol;
 		this.mobility = mobility;
 		this.hungerReplenishment = hungerReplenishment;
+		this.hunger = hunger;
 		//this.move = 0;
 	}
 	
