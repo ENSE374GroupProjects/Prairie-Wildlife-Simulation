@@ -17,7 +17,10 @@ public class Rabbit extends Fauna
 	//Default Constructor
 	public Rabbit() 
 	{
+		//Pass along specific rabbit information to the super constructor
 		super("rabbit", 'R', 2, 75);
+		
+		//Instantiate the rabbit's prey list
 		preyList.add(new Grass());
 	}
 }

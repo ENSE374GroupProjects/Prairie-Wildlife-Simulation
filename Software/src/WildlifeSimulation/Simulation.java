@@ -2,9 +2,10 @@
 * Simulation.java
 *
 * DESCRIPTION:
-* This file is the main file for the ENSE 374 Lab 5 assignment in the Fall 2016
+* This file is the main file for the ENSE 374 Lab 6 assignment in the Fall 2016
 * semester at the University of Regina. By following the provided prompts, the user is able
-* to add wildlife to a grid and observe the creatures living in their simulation.
+* to add wildlife to a grid and observe the creatures living in their simulation. The creatures
+* will interact with each other through their movement, hunger and preyList attributes
 *
 * AUTHORS: 	Tristan Heisler 200351317
 * 			Jonathon Wells 200328640
