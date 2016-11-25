@@ -234,7 +234,7 @@ public class Simulation
 					
 				//Advance the simulation by a single day
 				case '3':
-					System.out.println("The simulation will be advanced by a single day here.");
+					wildlifeGrid.advanceOneDay();
 					break;
 					
 				//View a legend
