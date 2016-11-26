@@ -21,7 +21,8 @@ public abstract class Wildlife
 	private int mobility;
 	private int hungerReplenishment;
 	private int totalMoves;
-	public int hunger;
+	private int hunger;
+	private boolean moved;
 	
 	//Default constructor
 	public Wildlife()
@@ -39,6 +40,7 @@ public abstract class Wildlife
 		this.hungerReplenishment = hungerReplenishment;
 		this.totalMoves = 0;
 		this.hunger = hunger;
+		this.moved = true;
 	}
 	
 	//Eat function - to be inherited
@@ -52,6 +54,7 @@ public abstract class Wildlife
 	public void move()
 	{
 		this.totalMoves++;
+		
 		this.hunger -= this.hunger - 10;
 	}
 
@@ -88,6 +91,16 @@ public abstract class Wildlife
 	public int getTotalMoves()
 	{
 		return this.totalMoves;
+	}
+	
+	public boolean hasMoved()
+	{
+		return this.moved;
+	}
+	
+	public void setMoved(boolean moved)
+	{
+		this.moved = moved;
 	}
 	
 	// Check if the animal is hungry

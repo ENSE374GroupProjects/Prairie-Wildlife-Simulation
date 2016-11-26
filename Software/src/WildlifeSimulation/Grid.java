@@ -22,11 +22,11 @@ public class Grid
 	 
 	//Private wildlife array
 	private Wildlife WildlifeGrid[][] = new Wildlife[ROWS][COLS];
-	//private int daysElapsed;
+	private int daysElapsed;
 	
 	public Grid() 
 	{
-		//this.daysElapsed = 0;
+		this.daysElapsed = 0;
 	}
 	
 	public void populateGrid(int wildlifeDensity)
@@ -127,7 +127,7 @@ public class Grid
 		int mobility, maxRowUp, maxRowDown, maxColLeft, maxColRight;
 		boolean moved;
 		
-		//daysElapsed++;
+		daysElapsed++;
 		// Iterate through rows and columns, checking every space
 		for (int row = 0; row < ROWS; row++)
 		{
@@ -137,23 +137,30 @@ public class Grid
 				if (WildlifeGrid[row][col] != null)
 				{
 					mobility = WildlifeGrid[row][col].getMobility();
-					// If the Wildlife at the current position is able to move (not a tree or grass), proceed
-					if (mobility > 0)
+					
+					// Check if the current Wildlife has already moved this turn
+					if (WildlifeGrid[row][col].getTotalMoves() < daysElapsed)
 					{
-						moved = false;
+						WildlifeGrid[row][col].setMoved(false);
+					}
+					else
+					{
+						WildlifeGrid[row][col].setMoved(true);
+					}
+					
+					// If the Wildlife at the current position is able to move (not a tree or grass), proceed
+					if (mobility > 0 && !WildlifeGrid[row][col].hasMoved())
+					{						
 						// Get the farthest bounds that the current Wildlife can move to (min and max row/column)
 						maxRowUp = ((row - mobility) >= 0) ? (row - mobility) : 0;
 						maxRowDown = ((row + mobility) < ROWS) ? (row + mobility) : (ROWS - 1);
 						maxColLeft = ((col - mobility) >= 0) ? (col - mobility) : 0;
 						maxColRight = ((col + mobility) < COLS) ? (col + mobility) : (COLS - 1);
 						
-						// Test coordinate - test successful
-						// System.out.println(WildlifeGrid[row][col].getSymbol()+"["+row+"]["+col+"]\t : MaxUp["+maxRowUp+"] \t MaxDown["+maxRowDown+"] \t MaxLeft["+maxColLeft+"] \t MaxRight["+maxColRight+"]");
-						
 						// Iterate through the valid movement zone for the current Wildlife
-						for (int i = maxRowUp; i <= maxRowDown && !moved; i++)
+						for (int i = maxRowUp; i <= maxRowDown && WildlifeGrid[row][col] != null; i++)
 						{
-							for (int j = maxColLeft; j <= maxColRight && !moved; j++)
+							for (int j = maxColLeft; j <= maxColRight && WildlifeGrid[row][col] != null; j++)
 							{
 								if ((i != row) && (j != col))
 								{
@@ -165,8 +172,8 @@ public class Grid
 											WildlifeGrid[row][col].eat(WildlifeGrid[i][j], i, j);
 											WildlifeGrid[row][col].move();
 											WildlifeGrid[i][j] = WildlifeGrid[row][col];
+											WildlifeGrid[i][j].setMoved(true);
 											WildlifeGrid[row][col] = null;
-											moved = true;
 										}
 									}
 									// Otherwise, if the potential spot is empty, move there
@@ -177,14 +184,14 @@ public class Grid
 										if (WildlifeGrid[row][col].isDead())
 										{
 											System.out.println(WildlifeGrid[row][col].getName() + " has died of starvation");
+											WildlifeGrid[row][col].setMoved(true);
 											WildlifeGrid[row][col] = null;
-											moved = true;
 										}
 										else
 										{
 											WildlifeGrid[i][j] = WildlifeGrid[row][col];
+											WildlifeGrid[i][j].setMoved(true);
 											WildlifeGrid[row][col] = null;
-											moved = true;
 										}
 									}
 								}
