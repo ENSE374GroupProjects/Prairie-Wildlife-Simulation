@@ -37,4 +37,19 @@ public abstract class Flora extends Wildlife
 	{
 		return;
 	}
+	
+	public boolean isHungry()
+	{
+		return false;
+	}
+	
+//	public boolean isDead()
+//	{
+//		return true;
+//	}
+//	
+//	public int getTotalMoves()
+//	{
+//		return 0;
+//	}
 }
