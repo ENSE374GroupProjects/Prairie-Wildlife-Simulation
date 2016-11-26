@@ -121,8 +121,112 @@ public class Grid
 			System.out.println("Location [" + row + "][" + col + "] is empty.");
 		}
 	}
-	
+
 	public void advanceOneDay()
+	{
+		int mobility, maxRowUp, maxRowDown, maxColLeft, maxColRight;
+		int preyRow, preyCol, emptyRow, emptyCol;
+		int randChance;
+		daysElapsed++; // daysElapsed will be used to verify against totalMoves of a Wildlife object to check if it has moved this day
+
+		// Iterate through WildlifeGrid
+		for (int row = 0; row < ROWS; row++) {
+			for (int col = 0; col < COLS; col++) {
+				// Check each space to see if the space is occupied
+				if (WildlifeGrid[row][col] != null) {
+					mobility = WildlifeGrid[row][col].getMobility();
+					// Check to see if the Wildlife object has the ability to move (flora vs fauna)
+					if (mobility > 0) {
+						// Check to see if it has already moved this day, proceed if it has not
+						if (WildlifeGrid[row][col].getTotalMoves() < daysElapsed) {
+							// Get max dimensions of the Wildlife's movement zone based on its mobility
+							maxRowUp = ((row - mobility) >= 0) ? (row - mobility) : 0;
+							maxRowDown = ((row + mobility) < ROWS) ? (row + mobility) : (ROWS - 1);
+							maxColLeft = ((col - mobility) >= 0) ? (col - mobility) : 0;
+							maxColRight = ((col + mobility) < COLS) ? (col + mobility) : (COLS - 1);
+
+							// Set temporary prey and empty space locations to -1
+							preyRow = -1;
+							preyCol = -1;
+							emptyRow = -1;
+							emptyCol = -1;
+
+							// Find a way to iterate through the max movement space, preferably as randomly as possible
+							// -- Possibly calculate flat index value of each searched space and save it in an array
+							// -- Search the value of the newest random with the values in the array to see if it has already come up
+							// -- Biggest array would be 9*9=81, not the most efficient method space-wise
+							// Check each position to see if it is a valid move
+							// If the animal is not hungry (hunger >= 70), take the first valid move (open space or prey)
+							// If the animal is hungry (hunger < 70), save an empty space as a temp, but only move to it if it can't find prey
+							// If it does find a prey, move to it
+							// Every move, the 'totalMoves' increments by 1 and 'hunger' decrements by 10
+							// If moving to a prey, eat it, replenishing 'hunger' by the prey's 'hungerReplenishment' value
+							// May not need the 'moved' value in Wildlife
+							for (int i = maxRowUp; i <= maxRowDown; i++) {
+								for (int j = maxColLeft; j <= maxColRight; j++) {
+									// If [i][j] is an empty space, temporarily store the location
+									if (WildlifeGrid[i][j] == null) {
+										// If there is no empty position saved, save this position
+										if ((emptyRow == -1) && (emptyCol == -1)) {
+											emptyRow = i;
+											emptyCol = j;
+										}
+										// Otherwise, have a 1/5 chance of saving it
+										else {
+											randChance = ThreadLocalRandom.current().nextInt(1, 6); // Random int from 1-5
+											if (randChance == 2) {
+												emptyRow = i;
+												emptyCol = j;
+											}
+										}
+									}
+									// If [i][j] is occupied, check if the current Wildlife can eat it
+									else {
+										if (WildlifeGrid[row][col].canEat(WildlifeGrid[i][j])) {
+											// If there is no prey position saved, save this position
+											if ((preyRow == -1) && (preyCol == -1)) {
+												preyRow = i;
+												preyCol = j;
+											}
+											// Otherwise, have a 1/5 chance of saving it
+											else {
+												randChance = ThreadLocalRandom.current().nextInt(1, 6); // Random int from 1-5
+												if (randChance == 2) {
+													preyRow = i;
+													preyCol = j;
+												}
+											}
+										}
+									}
+								}
+							}
+							// If the current Wildlife is hungry, move to the stored prey location if available
+							if (WildlifeGrid[row][col].isHungry() && (preyRow != -1) && (preyCol != -1)) {
+								WildlifeGrid[row][col].move();
+								WildlifeGrid[row][col].eat(WildlifeGrid[preyRow][preyCol], preyRow, preyCol);
+								WildlifeGrid[preyRow][preyCol] = WildlifeGrid[row][col];
+								WildlifeGrid[row][col] = null;
+							}
+							// If current Wildlife isn't hungry or no prey could be found, move to an empty space if possible
+							else if ((emptyRow != -1) && (emptyCol != -1)) {
+								WildlifeGrid[row][col].move();
+								WildlifeGrid[emptyRow][emptyCol] = WildlifeGrid[row][col];
+								WildlifeGrid[row][col] = null;
+							}
+							// If no valid move was found, wait a day
+							else {
+								WildlifeGrid[row][col].move();
+								System.out.println(WildlifeGrid[row][col].getName() + " waited at [" + row + "][" + col + "] for a day");
+							}
+						}
+					}
+				}
+			}
+		}
+		displayWildlife();
+	}
+
+	/*public void advanceOneDay()
 	{
 		int mobility, maxRowUp, maxRowDown, maxColLeft, maxColRight;
 		boolean moved;
@@ -195,8 +299,6 @@ public class Grid
 										}
 									}
 								}
-								
-								
 							}
 						}
 					}
@@ -205,7 +307,7 @@ public class Grid
 		}
 		// Display the grid after the day's moves
 		displayWildlife();
-	}
+	}*/
 	
 	/*public void advanceOneDay()
 	{

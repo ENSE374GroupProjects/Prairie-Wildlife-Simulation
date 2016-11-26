@@ -26,22 +26,13 @@ public abstract class Flora extends Wildlife
 	
 	// Eat
 	// Flora do not need to eat, override eat with empty function
-	public void eat()
-	{
-		return;
-	}
+	public void eat() {}
 	
 	// Move
 	// Flora do not need to move, override move with empty function
-	public void move()
-	{
-		return;
-	}
+	public void move() {}
 	
-	public boolean isHungry()
-	{
-		return false;
-	}
+	public boolean isHungry() { return false; }
 	
 //	public boolean isDead()
 //	{
