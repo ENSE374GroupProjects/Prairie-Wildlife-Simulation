@@ -17,8 +17,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Grid 
 {
 	//Public constants
-	public static final int ROWS = 5;
-	public static final int COLS = 10;
+	public static final int ROWS = 100;
+	public static final int COLS = 100;
 	 
 	//Private wildlife array
 	private Wildlife WildlifeGrid[][] = new Wildlife[ROWS][COLS];
@@ -171,9 +171,9 @@ public class Grid
 											emptyRow = i;
 											emptyCol = j;
 										}
-										// Otherwise, have a 1/5 chance of saving it
+										// Otherwise, have a 1/12 chance of saving it
 										else {
-											randChance = ThreadLocalRandom.current().nextInt(1, 6); // Random int from 1-5
+											randChance = ThreadLocalRandom.current().nextInt(1, 13); // Random int from 1-12
 											if (randChance == 2) {
 												emptyRow = i;
 												emptyCol = j;
@@ -188,9 +188,9 @@ public class Grid
 												preyRow = i;
 												preyCol = j;
 											}
-											// Otherwise, have a 1/5 chance of saving it
+											// Otherwise, have a 1/12 chance of saving it
 											else {
-												randChance = ThreadLocalRandom.current().nextInt(1, 6); // Random int from 1-5
+												randChance = ThreadLocalRandom.current().nextInt(1, 13); // Random int from 1-12
 												if (randChance == 2) {
 													preyRow = i;
 													preyCol = j;
@@ -200,8 +200,13 @@ public class Grid
 									}
 								}
 							}
+							// Check if the current Wildlife's hunger hits 0, and remove it if it has
+							if (WildlifeGrid[row][col].isDead()) {
+								System.out.println(WildlifeGrid[row][col].getName() + " at [" + row + "][" + col + "] has died of starvation");
+								WildlifeGrid[row][col] = null;
+							}
 							// If the current Wildlife is hungry, move to the stored prey location if available
-							if (WildlifeGrid[row][col].isHungry() && (preyRow != -1) && (preyCol != -1)) {
+							else if (WildlifeGrid[row][col].isHungry() && (preyRow != -1) && (preyCol != -1)) {
 								WildlifeGrid[row][col].move();
 								WildlifeGrid[row][col].eat(WildlifeGrid[preyRow][preyCol], preyRow, preyCol);
 								WildlifeGrid[preyRow][preyCol] = WildlifeGrid[row][col];
