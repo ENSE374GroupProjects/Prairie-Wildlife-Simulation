@@ -20,19 +20,27 @@ public abstract class Flora extends Wildlife
 	//Initializing constructor
 	public Flora(String name, char symbol, int mobility, int hungerReplenishment)
 	{
-		//Pass along specific fauna information as well as a default hunger of 0 to the super constructor
+		//Pass along specific flora information as well as a default hunger of 0 to the super constructor
 		super(name, symbol, mobility, hungerReplenishment, 0);
 	}
 	
-	//Eat function stub
-	public void eat()
-	{
-		System.out.println("The " + getName() + " is absorbing nutrients.");
-	}
+	// Eat
+	// Flora do not need to eat, override eat with empty function
+	public void eat() {}
 	
-	//Move function stub
-	public void move()
-	{
-		System.out.println("The " + getName() + " cannot move.");
-	}
+	// Move
+	// Flora do not need to move, override move with empty function
+	public void move() {}
+	
+	public boolean isHungry() { return false; }
+	
+//	public boolean isDead()
+//	{
+//		return true;
+//	}
+//	
+//	public int getTotalMoves()
+//	{
+//		return 0;
+//	}
 }

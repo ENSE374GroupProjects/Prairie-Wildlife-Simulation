@@ -22,14 +22,24 @@ public abstract class Fauna extends Wildlife
 	}
 	
 	//Eat function stub
-	public void eat()
+	public void eat(Wildlife prey, int row, int col)
 	{
-		System.out.println("The " + getName() + " is eating.");
+		super.eat(prey, row, col);
 	}
 	
 	//Move function stub
 	public void move()
 	{
-		System.out.println("The " + getName() + " is moving.");
+		super.move();
+	}
+	
+	public boolean isDead()
+	{
+		return super.isDead();
+	}
+	
+	public int getTotalMoves()
+	{
+		return super.getTotalMoves();
 	}
 }
