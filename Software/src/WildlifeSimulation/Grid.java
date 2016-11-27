@@ -22,7 +22,7 @@ public class Grid
 	 
 	//Private wildlife array
 	private Wildlife WildlifeGrid[][] = new Wildlife[ROWS][COLS];
-	private int daysElapsed;
+	private static int daysElapsed;
 	
 	public Grid() 
 	{
@@ -31,8 +31,6 @@ public class Grid
 	
 	public void populateGrid(int wildlifeDensity)
 	{
-		// Future plan: Implement different chances for each specific creature to spawn
-		// eg: wildlifeDensity = 50, switch case for wolf (10%) = 0 - wildlifeDensity/10
 		int random;
 		
 		//Loop through each row
@@ -48,22 +46,19 @@ public class Grid
 				if (random <= wildlifeDensity) 
 				{
 					//Randomly generate a number to determine which wildlife to spawn
-					random = ThreadLocalRandom.current().nextInt(0, 12);
-					switch (random)
-					{
-						case 0:		WildlifeGrid[i][j] = new Tree(); break;
-						case 1: 	WildlifeGrid[i][j] = new Grass(); break;
-						case 2: 	WildlifeGrid[i][j] = new Caterpillar(); break;
-						case 3: 	WildlifeGrid[i][j] = new Grasshopper(); break;
-						case 4: 	WildlifeGrid[i][j] = new Rabbit(); break;
-						case 5: 	WildlifeGrid[i][j] = new Mouse(); break;
-						case 6: 	WildlifeGrid[i][j] = new Squirrel(); break;
-						case 7: 	WildlifeGrid[i][j] = new Bluejay(); break;
-						case 8: 	WildlifeGrid[i][j] = new Deer(); break;
-						case 9: 	WildlifeGrid[i][j] = new Fox(); break;
-						case 10: 	WildlifeGrid[i][j] = new Hawk(); break;
-						case 11: 	WildlifeGrid[i][j] = new Wolf(); break;
-					}
+					random = ThreadLocalRandom.current().nextInt(0, 101);
+					if (random < 15) 						{ WildlifeGrid[i][j] = new Tree(); }
+					else if (random >= 15 && random < 35) 	{ WildlifeGrid[i][j] = new Grass(); }
+					else if (random >= 35 && random < 42) 	{ WildlifeGrid[i][j] = new Caterpillar(); }
+					else if (random >= 42 && random < 52) 	{ WildlifeGrid[i][j] = new Grasshopper(); }
+					else if (random >= 52 && random < 62) 	{ WildlifeGrid[i][j] = new Rabbit(); }
+					else if (random >= 62 && random < 68) 	{ WildlifeGrid[i][j] = new Mouse(); }
+					else if (random >= 68 && random < 76) 	{ WildlifeGrid[i][j] = new Squirrel(); }
+					else if (random >= 76 && random < 82) 	{ WildlifeGrid[i][j] = new Bluejay(); }
+					else if (random >= 82 && random < 90) 	{ WildlifeGrid[i][j] = new Deer(); }
+					else if (random >= 90 && random < 94) 	{ WildlifeGrid[i][j] = new Fox(); }
+					else if (random >= 94 && random < 98) 	{ WildlifeGrid[i][j] = new Hawk(); }
+					else if (random >= 98 && random <= 100) { WildlifeGrid[i][j] = new Wolf(); }
 				}
 				//If the number is larger than the percentage, do not add a new wildlife member
 				else 
@@ -109,6 +104,8 @@ public class Grid
 			System.out.print("=");
 		}
 		System.out.println("/");
+
+		System.out.println("\nDays Elapsed: " + this.daysElapsed);
 	}
 	
 	public void getWildlifeAtLocation(int row, int col)
@@ -120,6 +117,54 @@ public class Grid
 		else {
 			System.out.println("Location [" + row + "][" + col + "] is empty.");
 		}
+	}
+
+	public void printWildlifePopulations() {
+		int 	numGrass = 0,
+				numTrees = 0,
+				numCaterpillars = 0,
+				numGrasshoppers = 0,
+				numBluejays = 0,
+				numRabbits = 0,
+				numSquirrels = 0,
+				numDeer = 0,
+				numWolves = 0,
+				numHawks = 0,
+				numFoxes = 0,
+				numMice = 0;
+
+		for (int row = 0; row < ROWS; row++) {
+			for (int col = 0; col < COLS; col++) {
+				if (WildlifeGrid[row][col] != null) {
+					if (WildlifeGrid[row][col].getName() == "grass")			{ numGrass++; }
+					else if (WildlifeGrid[row][col].getName() == "tree")		{ numTrees++; }
+					else if (WildlifeGrid[row][col].getName() == "caterpillar")	{ numCaterpillars++; }
+					else if (WildlifeGrid[row][col].getName() == "grasshopper")	{ numGrasshoppers++; }
+					else if (WildlifeGrid[row][col].getName() == "bluejay")		{ numBluejays++; }
+					else if (WildlifeGrid[row][col].getName() == "rabbit")		{ numRabbits++; }
+					else if (WildlifeGrid[row][col].getName() == "squirrel")	{ numSquirrels++; }
+					else if (WildlifeGrid[row][col].getName() == "deer")		{ numDeer++; }
+					else if (WildlifeGrid[row][col].getName() == "wolf")		{ numWolves++; }
+					else if (WildlifeGrid[row][col].getName() == "fox")			{ numFoxes++; }
+					else if (WildlifeGrid[row][col].getName() == "mouse")		{ numMice++; }
+					else if (WildlifeGrid[row][col].getName() == "hawk")		{ numHawks++; }
+				}
+			}
+		}
+
+		System.out.println("\nPopulations:");
+		System.out.println("Grass: \t\t\t" + numGrass);
+		System.out.println("Trees: \t\t\t" + numTrees);
+		System.out.println("Caterpillars: \t" + numCaterpillars);
+		System.out.println("Grasshoppers: \t" + numGrasshoppers);
+		System.out.println("Bluejays: \t\t" + numBluejays);
+		System.out.println("Rabbits: \t\t" + numRabbits);
+		System.out.println("Squirrels: \t\t" + numSquirrels);
+		System.out.println("Mice: \t\t\t" + numMice);
+		System.out.println("Deer: \t\t\t" + numDeer);
+		System.out.println("Foxes: \t\t\t" + numFoxes);
+		System.out.println("Hawks: \t\t\t" + numHawks);
+		System.out.println("Wolves: \t\t" + numWolves);
 	}
 
 	public void advanceOneDay()
