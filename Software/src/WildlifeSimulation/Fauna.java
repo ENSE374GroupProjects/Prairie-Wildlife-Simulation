@@ -12,15 +12,13 @@
 
 package WildlifeSimulation;
 
-public class Fauna extends Wildlife 
+public abstract class Fauna extends Wildlife 
 {
-	//This abstract class will eventually be used to store fauna-specific members and methods.
-	//Potential examples include movement, eating and a list of the fauna's prey.
-	
 	//Initializing constructor
-	public Fauna(String name, char symbol)
+	public Fauna(String name, char symbol, int mobility, int hungerReplenishment)
 	{
-		super(name, symbol);
+		//Pass along specific fauna information as well as a default hunger of 100 to the super constructor
+		super(name, symbol, mobility, hungerReplenishment, 100);
 	}
 	
 	//Eat function stub

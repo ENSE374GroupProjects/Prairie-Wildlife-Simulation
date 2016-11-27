@@ -4,6 +4,7 @@
 * DESCRIPTION:
 * This file contains the grid implementation required by the wildlife simulation. Users are able to populate
 * the grid, display the grid to the console and determine the organism present at a particular location.
+* Additionally, users are able to advance the simulation by a single day.
 *
 * AUTHORS: 	Tristan Heisler 200351317
 * 			Jonathon Wells 200328640
@@ -18,7 +19,7 @@ public class Grid
 	//Public constants
 	public static final int ROWS = 36;
 	public static final int COLS = 100;
-	
+	 
 	//Private wildlife array
 	private Wildlife WildlifeGrid[][] = new Wildlife[ROWS][COLS];
 	
@@ -118,4 +119,55 @@ public class Grid
 			System.out.println("Location [" + row + "][" + col + "] is empty.");
 		}
 	}
+	
+	public void advanceOneDay()
+	{
+		//int maxLeft, maxRight, maxUp, maxDown, mobility;
+		int maxRowUp, maxRowDown, maxColLeft, maxColRight, mobility;
+		int randStartRow, randStartCol;
+		for (int row = 0; row < ROWS; row++)
+		{
+			for (int col = 0; col < COLS; col++)
+			{
+				if (WildlifeGrid[row][col] != null)
+				{
+					// Find the max positions that the current wildlife can move to linearly
+					mobility = WildlifeGrid[row][col].getMobility();
+					if (mobility > 0)
+					{
+						maxRowUp = ((row - mobility) >= 0) ? (row - mobility) : 0;
+						maxRowDown = ((row + mobility) < ROWS) ? (row + mobility) : (ROWS - 1);
+						maxColLeft = ((col - mobility) >= 0) ? (col - mobility) : 0;
+						maxColRight = ((col + mobility) < COLS) ? (col + mobility) : (COLS - 1);
+						
+						// Choose a random row and column to start at within -1 and +1
+						//randStartRow = ThreadLocalRandom.current().nextInt(-1, 2); // Random number from -1 to +1
+						//randStartCol = ThreadLocalRandom.current().nextInt(-1, 2);
+						
+						randStartRow = ThreadLocalRandom.current().nextInt(maxRowUp, maxRowDown + 1);
+						randStartCol = ThreadLocalRandom.current().nextInt(maxColLeft, maxColRight + 1);
+						
+						// Testing, just move to initial random square within grid
+						WildlifeGrid[randStartRow][randStartCol] = WildlifeGrid[row][col];
+						WildlifeGrid[row][col] = null;
+						
+						// for (int i = row + randStartRow; i <= maxRowDown && i >= maxRowUp; i++)
+//						int i = row + randStartRow;
+//						int j = col + randStartCol;
+//						while (i >= maxRowUp && i <= maxRowDown)
+//						{
+							
+//						}
+					}
+				}
+			}
+		}
+		
+		displayWildlife();
+	}
+	
+	//private checkPotentialSpot()
+	//{
+	
+	//}
 }

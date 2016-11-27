@@ -2,9 +2,10 @@
 * Simulation.java
 *
 * DESCRIPTION:
-* This file is the main file for the ENSE 374 Lab 5 assignment in the Fall 2016
+* This file is the main file for the ENSE 374 Lab 6 assignment in the Fall 2016
 * semester at the University of Regina. By following the provided prompts, the user is able
-* to add wildlife to a grid and observe the creatures living in their simulation.
+* to add wildlife to a grid and observe the creatures living in their simulation. The creatures
+* will interact with each other through their movement, hunger and preyList attributes
 *
 * AUTHORS: 	Tristan Heisler 200351317
 * 			Jonathon Wells 200328640
@@ -76,10 +77,12 @@ public class Simulation
 		//Present the possible choices to the user in a menu
 		System.out.print("\n/~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\\n"
 			+ "|Please indicate what you would like to do next:              |\n"
-			+ "|\t1. Display the wildlife grid to the console           |\n"
+			+ "|\t1. Display the current wildlife grid to the console   |\n"
 			+ "|\t2. Determine the wildlife present at a given location |\n"
-			+ "|\t3. Enter a new wildlife density                       |\n"
-			+ "|\t4. Exit the program                                   |\n"
+			+ "|\t3. Advance the simulation by a single day             |\n"
+			+ "|\t4. View a legend to understand symbol meaning         |\n"			
+			+ "|\t5. Enter a new wildlife density                       |\n"
+			+ "|\t6. Exit the program                                   |\n"
 			+ "\\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/\n\n");
 		
 		//Create a loop that will run until the user enters a valid choice
@@ -98,6 +101,8 @@ public class Simulation
 				case '2':
 				case '3':
 				case '4':
+				case '5':
+				case '6':
 					validChoice = true;
 					break;
 				//If the given choice is not permitted, inform the user and prompt them again
@@ -155,8 +160,29 @@ public class Simulation
 		return index;
 	}
 	
-	public static void main(String[] args) 
+	//Function for displaying the wildlife legend to the user
+	public void displayLegend()
 	{
+		System.out.print("\n            --------LEGEND--------"
+			+ "\nFauna are indicated with a capital letter:"
+			+ "\n\tB: Bluejay"
+			+ "\n\tC: Caterpillar"
+			+ "\n\tD: Deer"
+			+ "\n\tF: Fox"
+			+ "\n\tG: Grasshopper"
+			+ "\n\tH: Hawk"
+			+ "\n\tM: Mouse"
+			+ "\n\tR: Rabbit"
+			+ "\n\tS: Squirrel"
+			+ "\n\tW: Wolf"
+			+ "\nFlora are indicated with a lowercase letter:"
+			+ "\n\tg: Grass"
+			+ "\n\tt: Tree"
+			+ "\n            ----------------------\n");
+	}
+	
+	public static void main(String[] args) 
+	{		
 		//Declaring local variables
 		Simulation userInterface = new Simulation();
 		Grid wildlifeGrid = new Grid();
@@ -195,6 +221,7 @@ public class Simulation
 					wildlifeGrid.displayWildlife();
 					break;					
 					
+				//Determine the wildlife present at a given location
 				case '2':
 					//Obtain a row from the user
 					row = userInterface.determineRowOrColumn("row", Grid.ROWS - 1);
@@ -204,10 +231,20 @@ public class Simulation
 					
 					//Output the wildlife at the desired location
 					wildlifeGrid.getWildlifeAtLocation(row, column);
-					break;					
+					break;	
+					
+				//Advance the simulation by a single day
+				case '3':
+					wildlifeGrid.advanceOneDay();
+					break;
+					
+				//View a legend
+				case '4':
+					userInterface.displayLegend();
+					break;
 					
 				//Enter a new wildlife density
-				case '3':
+				case '5':
 					//Obtain a new density and populate the grid
 					wildlifeDensity = userInterface.determineDensity();
 					wildlifeGrid.populateGrid(wildlifeDensity);
@@ -218,7 +255,7 @@ public class Simulation
 					break;			
 					
 				//Exit the program
-				case '4':
+				case '6':
 					System.out.println("Goodbye!");
 					anotherSelection = false;
 					break;

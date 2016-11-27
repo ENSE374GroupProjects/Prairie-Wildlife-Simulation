@@ -11,11 +11,16 @@
 */
 
 package WildlifeSimulation;
+import java.util.ArrayList;
 
-public class Wildlife 
+public abstract class Wildlife 
 {	
 	private String name;
 	private char symbol;
+	private int mobility;
+	private int hungerReplenishment;
+	public int hunger;
+	protected ArrayList<Wildlife> preyList = new ArrayList<Wildlife>();
 	
 	//Default constructor
 	public Wildlife()
@@ -25,10 +30,13 @@ public class Wildlife
 	}
 	
 	//Initializing constructor
-	public Wildlife(String name, char symbol)
+	public Wildlife(String name, char symbol, int mobility, int hungerReplenishment, int hunger)
 	{
 		this.name = name;
 		this.symbol = symbol;
+		this.mobility = mobility;
+		this.hungerReplenishment = hungerReplenishment;
+		this.hunger = hunger;
 	}
 	
 	//Eat function - to be inherited
@@ -40,7 +48,7 @@ public class Wildlife
 	public void move()
 	{
 	}
-	
+
 	//Name getter
 	public String getName()
 	{
@@ -51,5 +59,38 @@ public class Wildlife
 	public char getSymbol()
 	{
 		return this.symbol;
+	}
+	
+	//Mobility getter
+	public int getMobility()
+	{
+		return this.mobility;
+	}
+	
+	//Hunger Replenishment getter
+	public int getHungerReplenishment()
+	{
+		return this.hungerReplenishment;
+	}
+	
+	//Hunger  getter
+	public int getHunger()
+	{
+		return this.hunger;
+	}
+	
+	//Determines if an animal can eat another Wildlife instance
+	public boolean canEat(Wildlife prey)
+	{
+		int i=0;
+		//Loop through all Wildlife in the animal's prey list.
+		while (i < preyList.size())
+		{
+			//Return true if the animal can be eaten.
+			if (preyList.get(i).getName().equals(prey.getName()))
+				return true;
+			i++;
+		}
+		return false;
 	}
 }

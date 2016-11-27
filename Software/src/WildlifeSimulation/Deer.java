@@ -17,6 +17,11 @@ public class Deer extends Fauna
 	//Default Constructor
 	public Deer()
 	{
-		super("deer", 'D');
+		//Pass along specific deer information to the super constructor
+		super("deer", 'D', 3, 100);
+		
+		//Instantiate the deer's prey list
+		preyList.add(new Grass());
+		preyList.add(new Tree());
 	}
 }

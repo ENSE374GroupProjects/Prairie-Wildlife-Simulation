@@ -17,6 +17,11 @@ public class Wolf extends Fauna
 	//Default constructor
 	public Wolf()
 	{
-		super("wolf", 'W');
+		//Pass along specific wolf information to the super constructor
+		super("wolf", 'W', 3, 100);
+		
+		//Instantiate the wolf's prey list
+		preyList.add(new Rabbit());
+		preyList.add(new Deer());
 	}
 }

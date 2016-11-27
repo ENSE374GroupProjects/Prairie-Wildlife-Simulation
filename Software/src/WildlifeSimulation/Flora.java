@@ -12,15 +12,16 @@
 
 package WildlifeSimulation;
 
-public class Flora extends Wildlife 
+public abstract class Flora extends Wildlife 
 {
 	//This abstract class will eventually be used to store flora-specific members and methods. 
 	//Potential examples include plant growth.
 	
 	//Initializing constructor
-	public Flora(String name, char symbol)
+	public Flora(String name, char symbol, int mobility, int hungerReplenishment)
 	{
-		super(name, symbol);
+		//Pass along specific fauna information as well as a default hunger of 0 to the super constructor
+		super(name, symbol, mobility, hungerReplenishment, 0);
 	}
 	
 	//Eat function stub
