@@ -5,7 +5,7 @@
 * This file is the main file for the ENSE 374 Lab 6 assignment in the Fall 2016
 * semester at the University of Regina. By following the provided prompts, the user is able
 * to add wildlife to a grid and observe the creatures living in their simulation. The creatures
-* will interact with each other through their movement, hunger and preyList attributes
+* will interact with each other through their movement, hunger and preyList attributes.
 *
 * AUTHORS: 	Tristan Heisler 200351317
 * 			Jonathon Wells 200328640
@@ -77,13 +77,13 @@ public class Simulation
 		//Present the possible choices to the user in a menu
 		System.out.print("\n/~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\\n"
 				+ "|Please indicate what you would like to do next:              |\n"
-				+ "|\t1. Display the current wildlife grid to the console    	  |\n"
-				+ "|\t2. Determine the wildlife present at a given location  	  |\n"
-				+ "|\t3. Advance the simulation by a single day              	  |\n"
-				+ "|\t4. View wildlife populations             	 			  |\n"
-				+ "|\t5. View a legend to understand symbol meaning          	  |\n"
-				+ "|\t6. Enter a new wildlife density                        	  |\n"
-				+ "|\t7. Exit the program                                    	  |\n"
+				+ "|\t1. Display the current wildlife grid to the console   |\n"
+				+ "|\t2. Determine the wildlife present at a given location |\n"
+				+ "|\t3. Advance the simulation by a single day             |\n"
+				+ "|\t4. View wildlife populations                          |\n"
+				+ "|\t5. View a legend to understand symbol meaning         |\n"
+				+ "|\t6. Enter a new wildlife density                       |\n"
+				+ "|\t7. Exit the program                                   |\n"
 				+ "\\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/\n\n");
 
 		//Create a loop that will run until the user enters a valid choice

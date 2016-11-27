@@ -44,15 +44,14 @@ public abstract class Wildlife
 	//Eat function - to be inherited
 	public void eat(Wildlife prey, int row, int col)
 	{
-		System.out.println(this.name + " has eaten a " + prey.getName() + " at [" + row + "][" + col +"]");
 		this.hunger = (this.hunger + prey.getHungerReplenishment() <= 100) ? (this.hunger + prey.getHungerReplenishment()) : (this.hunger = 100);
 	}
 	
 	//Move function - to be inherited
 	public void move()
 	{
-		this.totalMoves++;
-		
+		//Increment the number of moves and increase the wildlife's hunger
+		this.totalMoves++;		
 		this.hunger -= 10;
 	}
 
@@ -91,13 +90,13 @@ public abstract class Wildlife
 		return this.totalMoves;
 	}
 	
-	// Check if the animal is hungry
+	//Check if the animal is hungry
 	public boolean isHungry()
 	{
 		return (this.hunger < 70);
 	}
 
-	// Check if the animal has died
+	//Check if the animal has died
 	public boolean isDead()
 	{
 		return (this.hunger <= 0);
