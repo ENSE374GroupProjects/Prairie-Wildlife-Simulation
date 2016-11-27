@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Grid 
 {
 	//Public constants
-	public static final int ROWS = 100;
+	public static final int ROWS = 36;
 	public static final int COLS = 100;
 	 
 	//Private wildlife array
@@ -32,6 +32,7 @@ public class Grid
 	public void populateGrid(int wildlifeDensity)
 	{
 		int random;
+		this.daysElapsed = 0;
 		
 		//Loop through each row
 		for (int i = 0; i < ROWS; i++)
