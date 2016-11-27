@@ -156,8 +156,8 @@ public class Grid
 		System.out.println("\nPopulations:");
 		System.out.println("Grass: \t\t\t" + numGrass);
 		System.out.println("Trees: \t\t\t" + numTrees);
-		System.out.println("Caterpillars: \t" + numCaterpillars);
-		System.out.println("Grasshoppers: \t" + numGrasshoppers);
+		System.out.println("Caterpillars: \t\t" + numCaterpillars);
+		System.out.println("Grasshoppers: \t\t" + numGrasshoppers);
 		System.out.println("Bluejays: \t\t" + numBluejays);
 		System.out.println("Rabbits: \t\t" + numRabbits);
 		System.out.println("Squirrels: \t\t" + numSquirrels);
