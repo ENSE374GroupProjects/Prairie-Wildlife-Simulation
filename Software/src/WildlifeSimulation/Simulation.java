@@ -76,15 +76,16 @@ public class Simulation
 
 		//Present the possible choices to the user in a menu
 		System.out.print("\n/~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\\n"
-			+ "|Please indicate what you would like to do next:              |\n"
-			+ "|\t1. Display the current wildlife grid to the console   |\n"
-			+ "|\t2. Determine the wildlife present at a given location |\n"
-			+ "|\t3. Advance the simulation by a single day             |\n"
-			+ "|\t4. View a legend to understand symbol meaning         |\n"			
-			+ "|\t5. Enter a new wildlife density                       |\n"
-			+ "|\t6. Exit the program                                   |\n"
-			+ "\\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/\n\n");
-		
+				+ "|Please indicate what you would like to do next:              |\n"
+				+ "|\t1. Display the current wildlife grid to the console    	  |\n"
+				+ "|\t2. Determine the wildlife present at a given location  	  |\n"
+				+ "|\t3. Advance the simulation by a single day              	  |\n"
+				+ "|\t4. View wildlife populations             	 			  |\n"
+				+ "|\t5. View a legend to understand symbol meaning          	  |\n"
+				+ "|\t6. Enter a new wildlife density                        	  |\n"
+				+ "|\t7. Exit the program                                    	  |\n"
+				+ "\\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/\n\n");
+
 		//Create a loop that will run until the user enters a valid choice
 		do
 		{
@@ -103,6 +104,7 @@ public class Simulation
 				case '4':
 				case '5':
 				case '6':
+				case '7':
 					validChoice = true;
 					break;
 				//If the given choice is not permitted, inform the user and prompt them again
@@ -237,14 +239,18 @@ public class Simulation
 				case '3':
 					wildlifeGrid.advanceOneDay();
 					break;
+
+				case '4':
+					wildlifeGrid.printWildlifePopulations();
+					break;
 					
 				//View a legend
-				case '4':
+				case '5':
 					userInterface.displayLegend();
 					break;
 					
 				//Enter a new wildlife density
-				case '5':
+				case '6':
 					//Obtain a new density and populate the grid
 					wildlifeDensity = userInterface.determineDensity();
 					wildlifeGrid.populateGrid(wildlifeDensity);
@@ -255,7 +261,7 @@ public class Simulation
 					break;			
 					
 				//Exit the program
-				case '6':
+				case '7':
 					System.out.println("Goodbye!");
 					anotherSelection = false;
 					break;
