@@ -17,20 +17,20 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Grid 
 {
 	//Public constants
-	public static final int ROWS = 36;
+	public static final int ROWS = 100;
 	public static final int COLS = 100;
 	 
 	//Private wildlife array
 	private Wildlife WildlifeGrid[][] = new Wildlife[ROWS][COLS];
+	private static int daysElapsed;
 	
 	public Grid() 
 	{
+		this.daysElapsed = 0;
 	}
 	
 	public void populateGrid(int wildlifeDensity)
 	{
-		// Future plan: Implement different chances for each specific creature to spawn
-		// eg: wildlifeDensity = 50, switch case for wolf (10%) = 0 - wildlifeDensity/10
 		int random;
 		
 		//Loop through each row
@@ -46,22 +46,19 @@ public class Grid
 				if (random <= wildlifeDensity) 
 				{
 					//Randomly generate a number to determine which wildlife to spawn
-					random = ThreadLocalRandom.current().nextInt(0, 12);
-					switch (random)
-					{
-						case 0:		WildlifeGrid[i][j] = new Tree(); break;
-						case 1: 	WildlifeGrid[i][j] = new Grass(); break;
-						case 2: 	WildlifeGrid[i][j] = new Caterpillar(); break;
-						case 3: 	WildlifeGrid[i][j] = new Grasshopper(); break;
-						case 4: 	WildlifeGrid[i][j] = new Rabbit(); break;
-						case 5: 	WildlifeGrid[i][j] = new Mouse(); break;
-						case 6: 	WildlifeGrid[i][j] = new Squirrel(); break;
-						case 7: 	WildlifeGrid[i][j] = new Bluejay(); break;
-						case 8: 	WildlifeGrid[i][j] = new Deer(); break;
-						case 9: 	WildlifeGrid[i][j] = new Fox(); break;
-						case 10: 	WildlifeGrid[i][j] = new Hawk(); break;
-						case 11: 	WildlifeGrid[i][j] = new Wolf(); break;
-					}
+					random = ThreadLocalRandom.current().nextInt(0, 101);
+					if (random < 15) 						{ WildlifeGrid[i][j] = new Tree(); }
+					else if (random >= 15 && random < 35) 	{ WildlifeGrid[i][j] = new Grass(); }
+					else if (random >= 35 && random < 42) 	{ WildlifeGrid[i][j] = new Caterpillar(); }
+					else if (random >= 42 && random < 52) 	{ WildlifeGrid[i][j] = new Grasshopper(); }
+					else if (random >= 52 && random < 62) 	{ WildlifeGrid[i][j] = new Rabbit(); }
+					else if (random >= 62 && random < 68) 	{ WildlifeGrid[i][j] = new Mouse(); }
+					else if (random >= 68 && random < 76) 	{ WildlifeGrid[i][j] = new Squirrel(); }
+					else if (random >= 76 && random < 82) 	{ WildlifeGrid[i][j] = new Bluejay(); }
+					else if (random >= 82 && random < 90) 	{ WildlifeGrid[i][j] = new Deer(); }
+					else if (random >= 90 && random < 94) 	{ WildlifeGrid[i][j] = new Fox(); }
+					else if (random >= 94 && random < 98) 	{ WildlifeGrid[i][j] = new Hawk(); }
+					else if (random >= 98 && random <= 100) { WildlifeGrid[i][j] = new Wolf(); }
 				}
 				//If the number is larger than the percentage, do not add a new wildlife member
 				else 
@@ -107,6 +104,8 @@ public class Grid
 			System.out.print("=");
 		}
 		System.out.println("/");
+
+		System.out.println("\nDays Elapsed: " + this.daysElapsed);
 	}
 	
 	public void getWildlifeAtLocation(int row, int col)
@@ -119,55 +118,156 @@ public class Grid
 			System.out.println("Location [" + row + "][" + col + "] is empty.");
 		}
 	}
-	
+
+	public void printWildlifePopulations() {
+		int 	numGrass = 0,
+				numTrees = 0,
+				numCaterpillars = 0,
+				numGrasshoppers = 0,
+				numBluejays = 0,
+				numRabbits = 0,
+				numSquirrels = 0,
+				numDeer = 0,
+				numWolves = 0,
+				numHawks = 0,
+				numFoxes = 0,
+				numMice = 0;
+
+		for (int row = 0; row < ROWS; row++) {
+			for (int col = 0; col < COLS; col++) {
+				if (WildlifeGrid[row][col] != null) {
+					if (WildlifeGrid[row][col].getName() == "grass")			{ numGrass++; }
+					else if (WildlifeGrid[row][col].getName() == "tree")		{ numTrees++; }
+					else if (WildlifeGrid[row][col].getName() == "caterpillar")	{ numCaterpillars++; }
+					else if (WildlifeGrid[row][col].getName() == "grasshopper")	{ numGrasshoppers++; }
+					else if (WildlifeGrid[row][col].getName() == "bluejay")		{ numBluejays++; }
+					else if (WildlifeGrid[row][col].getName() == "rabbit")		{ numRabbits++; }
+					else if (WildlifeGrid[row][col].getName() == "squirrel")	{ numSquirrels++; }
+					else if (WildlifeGrid[row][col].getName() == "deer")		{ numDeer++; }
+					else if (WildlifeGrid[row][col].getName() == "wolf")		{ numWolves++; }
+					else if (WildlifeGrid[row][col].getName() == "fox")			{ numFoxes++; }
+					else if (WildlifeGrid[row][col].getName() == "mouse")		{ numMice++; }
+					else if (WildlifeGrid[row][col].getName() == "hawk")		{ numHawks++; }
+				}
+			}
+		}
+
+		System.out.println("\nPopulations:");
+		System.out.println("Grass: \t\t\t" + numGrass);
+		System.out.println("Trees: \t\t\t" + numTrees);
+		System.out.println("Caterpillars: \t" + numCaterpillars);
+		System.out.println("Grasshoppers: \t" + numGrasshoppers);
+		System.out.println("Bluejays: \t\t" + numBluejays);
+		System.out.println("Rabbits: \t\t" + numRabbits);
+		System.out.println("Squirrels: \t\t" + numSquirrels);
+		System.out.println("Mice: \t\t\t" + numMice);
+		System.out.println("Deer: \t\t\t" + numDeer);
+		System.out.println("Foxes: \t\t\t" + numFoxes);
+		System.out.println("Hawks: \t\t\t" + numHawks);
+		System.out.println("Wolves: \t\t" + numWolves);
+	}
+
 	public void advanceOneDay()
 	{
-		//int maxLeft, maxRight, maxUp, maxDown, mobility;
-		int maxRowUp, maxRowDown, maxColLeft, maxColRight, mobility;
-		int randStartRow, randStartCol;
-		for (int row = 0; row < ROWS; row++)
-		{
-			for (int col = 0; col < COLS; col++)
-			{
-				if (WildlifeGrid[row][col] != null)
-				{
-					// Find the max positions that the current wildlife can move to linearly
+		int mobility, maxRowUp, maxRowDown, maxColLeft, maxColRight;
+		int preyRow, preyCol, emptyRow, emptyCol;
+		int randChance;
+		daysElapsed++; // daysElapsed will be used to verify against totalMoves of a Wildlife object to check if it has moved this day
+
+		// Iterate through WildlifeGrid
+		for (int row = 0; row < ROWS; row++) {
+			for (int col = 0; col < COLS; col++) {
+				// Check each space to see if the space is occupied
+				if (WildlifeGrid[row][col] != null) {
 					mobility = WildlifeGrid[row][col].getMobility();
-					if (mobility > 0)
-					{
-						maxRowUp = ((row - mobility) >= 0) ? (row - mobility) : 0;
-						maxRowDown = ((row + mobility) < ROWS) ? (row + mobility) : (ROWS - 1);
-						maxColLeft = ((col - mobility) >= 0) ? (col - mobility) : 0;
-						maxColRight = ((col + mobility) < COLS) ? (col + mobility) : (COLS - 1);
-						
-						// Choose a random row and column to start at within -1 and +1
-						//randStartRow = ThreadLocalRandom.current().nextInt(-1, 2); // Random number from -1 to +1
-						//randStartCol = ThreadLocalRandom.current().nextInt(-1, 2);
-						
-						randStartRow = ThreadLocalRandom.current().nextInt(maxRowUp, maxRowDown + 1);
-						randStartCol = ThreadLocalRandom.current().nextInt(maxColLeft, maxColRight + 1);
-						
-						// Testing, just move to initial random square within grid
-						WildlifeGrid[randStartRow][randStartCol] = WildlifeGrid[row][col];
-						WildlifeGrid[row][col] = null;
-						
-						// for (int i = row + randStartRow; i <= maxRowDown && i >= maxRowUp; i++)
-//						int i = row + randStartRow;
-//						int j = col + randStartCol;
-//						while (i >= maxRowUp && i <= maxRowDown)
-//						{
-							
-//						}
+					// Check to see if the Wildlife object has the ability to move (flora vs fauna)
+					if (mobility > 0) {
+						// Check to see if it has already moved this day, proceed if it has not
+						if (WildlifeGrid[row][col].getTotalMoves() < daysElapsed) {
+							// Get max dimensions of the Wildlife's movement zone based on its mobility
+							maxRowUp = ((row - mobility) >= 0) ? (row - mobility) : 0;
+							maxRowDown = ((row + mobility) < ROWS) ? (row + mobility) : (ROWS - 1);
+							maxColLeft = ((col - mobility) >= 0) ? (col - mobility) : 0;
+							maxColRight = ((col + mobility) < COLS) ? (col + mobility) : (COLS - 1);
+
+							// Set temporary prey and empty space locations to -1
+							preyRow = -1;
+							preyCol = -1;
+							emptyRow = -1;
+							emptyCol = -1;
+
+							// Check each position to see if it is a valid move
+							// If the animal is not hungry (hunger >= 70), take the first valid move (open space or prey)
+							// If the animal is hungry (hunger < 70), save an empty space as a temp, but only move to it if it can't find prey
+							// If it does find a prey, move to it
+							// Every move, the 'totalMoves' increments by 1 and 'hunger' decrements by 10
+							// If moving to a prey, eat it, replenishing 'hunger' by the prey's 'hungerReplenishment' value
+							for (int i = maxRowUp; i <= maxRowDown; i++) {
+								for (int j = maxColLeft; j <= maxColRight; j++) {
+									// If [i][j] is an empty space, temporarily store the location
+									if (WildlifeGrid[i][j] == null) {
+										// If there is no empty position saved, save this position
+										if ((emptyRow == -1) && (emptyCol == -1)) {
+											emptyRow = i;
+											emptyCol = j;
+										}
+										// Otherwise, have a 1/12 chance of saving it
+										else {
+											randChance = ThreadLocalRandom.current().nextInt(1, 13); // Random int from 1-12
+											if (randChance == 2) {
+												emptyRow = i;
+												emptyCol = j;
+											}
+										}
+									}
+									// If [i][j] is occupied, check if the current Wildlife can eat it
+									else {
+										if (WildlifeGrid[row][col].canEat(WildlifeGrid[i][j])) {
+											// If there is no prey position saved, save this position
+											if ((preyRow == -1) && (preyCol == -1)) {
+												preyRow = i;
+												preyCol = j;
+											}
+											// Otherwise, have a 1/12 chance of saving it
+											else {
+												randChance = ThreadLocalRandom.current().nextInt(1, 13); // Random int from 1-12
+												if (randChance == 2) {
+													preyRow = i;
+													preyCol = j;
+												}
+											}
+										}
+									}
+								}
+							}
+							// Check if the current Wildlife's hunger hits 0, and remove it if it has
+							if (WildlifeGrid[row][col].isDead()) {
+								System.out.println(WildlifeGrid[row][col].getName() + " at [" + row + "][" + col + "] has died of starvation");
+								WildlifeGrid[row][col] = null;
+							}
+							// If the current Wildlife is hungry, move to the stored prey location if available
+							else if (WildlifeGrid[row][col].isHungry() && (preyRow != -1) && (preyCol != -1)) {
+								WildlifeGrid[row][col].move();
+								WildlifeGrid[row][col].eat(WildlifeGrid[preyRow][preyCol], preyRow, preyCol);
+								WildlifeGrid[preyRow][preyCol] = WildlifeGrid[row][col];
+								WildlifeGrid[row][col] = null;
+							}
+							// If current Wildlife isn't hungry or no prey could be found, move to an empty space if possible
+							else if ((emptyRow != -1) && (emptyCol != -1)) {
+								WildlifeGrid[row][col].move();
+								WildlifeGrid[emptyRow][emptyCol] = WildlifeGrid[row][col];
+								WildlifeGrid[row][col] = null;
+							}
+							// If no valid move was found, wait a day
+							else {
+								WildlifeGrid[row][col].move();
+								System.out.println(WildlifeGrid[row][col].getName() + " waited at [" + row + "][" + col + "] for a day");
+							}
+						}
 					}
 				}
 			}
 		}
-		
 		displayWildlife();
 	}
-	
-	//private checkPotentialSpot()
-	//{
-	
-	//}
 }
